@@ -1,1 +1,169 @@
 /* generic blog style look, main colours will be white/green in light mode and slate/green in dark mode */
+:root{
+    --lightModeColour:#f7e8d3;
+    --lightModeAccents:#abfa86;
+    --darkModeColour:#423c37;
+    --darkModeAccents:#377923;
+}
+body{
+    background-color: var(--lightModeColour);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--lightModeColour);
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid black;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 11px;
+  width: 13px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--lightModeAccents);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--darkModeColour);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--darkModeAccents);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: var(--darkModeAccents);
+}
+
+.slider {
+  border-radius: 34px;
+}
+
+.slider:before {
+  border-radius: 50%;
+}
+
+ul {
+  width: 90vw;
+  height: 300px;
+  padding: 20px;
+  display: flex;
+  gap: 4vw;
+  background-color: inherit;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  anchor-name: --topPosts;
+  scroll-marker-group: after;
+}
+
+li {
+  list-style-type: none;
+  background-color: inherit;
+  border: 1px solid inherit;
+  padding: 20px;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+ul::scroll-button(*) {
+  border: 0;
+  font-size: 2rem;
+  background: none;
+  color: rgb(0 0 0 / 0.7);
+  cursor: pointer;
+  position: absolute;
+  position-anchor: --topPosts;
+}
+
+ul::scroll-button(*):hover,
+ul::scroll-button(*):focus {
+  color: var(--lightModeAccents);
+}
+
+ul::scroll-button(*):active {
+  translate: 1px 1px;
+}
+
+ul::scroll-button(*):disabled {
+  color: rgb(0 0 0 / 0.2);
+  cursor: unset;
+}
+ul::scroll-button(left) {
+  content: "◄";
+  right: calc(anchor(left) - 70px);
+  bottom: calc(anchor(top) + 13px);
+}
+
+ul::scroll-button(right) {
+  content: "►";
+  left: calc(anchor(right) - 110px);
+  bottom: calc(anchor(top) + 13px);
+}
+
+ul::scroll-marker-group {
+  position: absolute;
+  position-anchor: --myCarousel;
+  top: calc(anchor(bottom) - 70px);
+  justify-self: anchor-center;
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+li::scroll-marker {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+li::scroll-marker:target-current {
+  background-color: black;
+}
+
+h1{
+    text-align: center;
+}
+
+input[type=submit]{
+    border-style: none;
+    border-radius: 12px;
+    background-color: var(--lightModeAccents);
+    &:hover{
+        background-color: var(--darkModeAccents);
+    }
+}
+
+input[type=text],input[type=password]{
+    background-color: inherit;
+    border-radius: 8px;
+}

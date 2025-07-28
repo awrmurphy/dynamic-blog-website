@@ -1,5 +1,5 @@
 For this project I'll be creating a dynamic blog website. Index will represent the sites homepage, newpost will be a page with a form that allows the user to create a new post, and user will be a page that allows the user to view, edit, and delete any previous post.
-The home page will feature a login/regristration form, a dark mode/light mode toggle, a nav bar, "top posts", and related articles.
+The home page will feature a login/regristration form, a dark mode/light mode toggle, a nav bar, and "top posts".
 The new post page will feature only the new post form and the nav bar, appearance will carry over from the homepage toggle. This page will alert and redirect if the user is not logged in
 The User page will feature a chronological history of all previous posts with options to edit and delete them, the dark mode/light mode toggle will be available on this page as well as the nav bar. This page will also feature the login/regristration form unless logged in.
 If the user is logged in the login/regristration form will be replaced with a welcome banner and a logout button.

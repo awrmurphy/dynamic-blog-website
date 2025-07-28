@@ -9,8 +9,37 @@
 
 </head>
 <body>
-    <!-- home page will feature a login form, "top posts", and related articles  -->
+    <!-- home page will feature a login form and "top posts" -->
     <!-- A side nav bar will allow for navigation to home page, new post page and user posts page-->
     <!-- home page will also feature light mode/dark mode toggle-->
+     <label class="switch" id="mode">
+        <input type="checkbox">
+        <span class="slider"></span>
+     </label>
+     <form action="#" id="login">
+        <label for="user">Username:</label><br>
+        <input type="text" name="user" id="user" maxlength="20"><br>
+        <label for="pass">Password:</label><br>
+        <input type="password" name="pass" id="pass" maxlength="20"><br>
+        <input type="submit" id="userLog" value="Log in"><input type="submit" id="userReg" value="Register">
+     </form>
+
+     <section name="topPosts">
+        <h1>Top Posts This Week</h1>
+        <ul>
+            <li>
+                <h2>Placeholder 1</h2>
+            </li>
+            <li>
+                <h2>Placeholder 2</h2>
+            </li>
+            <li>
+                <h2>Placeholder 3</h2>
+            </li>
+            <li>
+                <h2>Placeholder 4</h2>
+            </li>
+        </ul>
+     </section>
 </body>
 </html>
