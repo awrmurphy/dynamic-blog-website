@@ -12,7 +12,17 @@
     <!-- home page will feature a login form and "top posts" -->
     <!-- A side nav bar will allow for navigation to home page, new post page and user posts page-->
     <!-- home page will also feature light mode/dark mode toggle-->
-     <label class="switch" id="mode">
+    <div id="sideNav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="index.html" id="accents">Home</a>
+  <a href="newpost.html" id="accents">New Post</a>
+  <a href="user.html" id="accents">Post History</a>
+  
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span> <br>
+    <label class="switch" id="mode">
         <input type="checkbox">
         <span class="slider"></span>
      </label>
