@@ -62,9 +62,17 @@ function logout(){
     location.reload();
 }
 
-function passUser(){
+function passUserNew(){
     localStorage.setItem("UserPost", loggedInUser);
     location.href = "newpost.html";
+}
+function passUserHistory(){
+    localStorage.setItem("UserPost", loggedInUser);
+    location.href = "user.html";
+}
+function passUserHome(){
+    localStorage.setItem("UserPost", loggedInUser);
+    location.href = "index.html";
 }
 
 function read(input){
@@ -72,9 +80,16 @@ function read(input){
         var reader = new FileReader();
 
         reader.onload = (e) => {
+            try{
             localStorage.setItem('postImg', e.target.result);
+            }catch(e){
+                if(e.name === 'QuotaExceededError'){
+                    alert("This file is too large, try a smaller one.");
+                }else{
+                    throw e;
+                }
+            }
         };
-
         reader.readAsDataURL(input.files[0]);
     
     };
@@ -83,43 +98,34 @@ function read(input){
 
 function post(){
     event.preventDefault();
+    
+    postArray=JSON.parse(localStorage.getItem("posts"));
+    if(localStorage.getItem('postImg')){
+    postArray[postArray.length]={
+    loggedUser : loggedInUser,
+    postN : document.getElementById("postTitle").value,
+    postC : document.getElementById("postContent").value,
+    postI : localStorage.getItem('postImg')
+    };
+    localStorage.removeItem('postImg');
+   }else{
+    postArray[postArray.length]={
+    loggedUser : loggedInUser,
+    postN : document.getElementById("postTitle").value,
+    postC : document.getElementById("postContent").value,
+    postI : undefined
+        }
+    }
+    postHistory = JSON.stringify(postArray);
+    localStorage.setItem("posts",postHistory);
     localStorage.setItem("UserPost",loggedInUser);
-    localStorage.setItem("postTitle",document.getElementById("postTitle").value);
-    localStorage.setItem("postContent",document.getElementById("postContent").value);
-   
     location.href = "user.html";
 }
 
 function loadHistory(){
     loggedInUser=localStorage.getItem("UserPost");
-    localStorage.removeItem("UserPost");
-    let postName = localStorage.getItem("postTitle");
-    localStorage.removeItem("postTitle");
-    let postContent = localStorage.getItem("postContent");
-    localStorage.removeItem("postContent");
-    let postImg;
-        if(localStorage.getItem("posts")!=null){
-            postArray = JSON.parse(localStorage.getItem("posts"));
-        }
-    if(localStorage.getItem("postImg")!=undefined){
-    postImg = localStorage.getItem("postImg");
-    localStorage.removeItem("postImg");
-    postArray[postArray.length] = {
-        loggedUser : loggedInUser,
-        postN : postName,
-        postC : postContent,
-        postI : postImg
-    };
-    }
-    else
-        {
-        postArray[postArray.length] = {
-        loggedUser : loggedInUser,
-        postN : postName,
-        postC : postContent
-        }
-        
-        }
+    
+    postArray =JSON.parse(localStorage.getItem("posts"));
 
     for(let i =postArray.length-1;i>=0;){
         buildPost(i);
@@ -135,6 +141,7 @@ function buildPost(i){
     
     const br = document.createElement('br');
     const container = document.createElement('div');
+    container.setAttribute('id',`container:${postArray.length-i}`)
     container.setAttribute('class','oldPost');
     container.setAttribute('background-color', 'var(--lightModeAccents)');
     container.setAttribute('border-radius', '8px');
@@ -147,7 +154,6 @@ function buildPost(i){
     postHeader.setAttribute('color','var(--darkModeColour)')
     postHeader.setAttribute('id',`postHeader: ${postArray.length-i}`);
     postHeader.innerHTML=') ' +post.loggedUser+' says...';
-    postHeader.appendChild(br);
     const postName = document.createElement('h2');
     postName.setAttribute('color', 'var(--darkModeColour)');
     postName.setAttribute('id',`postName: ${postArray.length-i}`);
@@ -167,6 +173,7 @@ function buildPost(i){
         postImage.setAttribute('id',`postImage: ${postArray.length-i}`);
         container.appendChild(postImage);
         container.appendChild(br);
+        
     }
     const edit = document.createElement('button');
     edit.setAttribute('onclick','edit(this.id)');
@@ -191,13 +198,7 @@ function edit(i){
 }
 
 function editPost(i){
-    console.log(i);
-    console.log(postArray);
-    
-    
     var thisPost = postArray[i];
-    console.log(thisPost);
-    
     
     thisPost.postN = document.getElementById(`postName: ${i}`).value;
     thisPost.postC = document.getElementById(`postBody: ${i}`).value;
@@ -219,6 +220,14 @@ function editPost(i){
 }
 
 function del(i){
+    console.log(i);
+    
+postArray.splice(i,1);
+postHistory = JSON.stringify(postArray);
+localStorage.setItem('posts', postHistory);
+document.querySelectorAll(".oldPost").forEach(el => el.remove());
+loadHistory();
+
 
 }
 

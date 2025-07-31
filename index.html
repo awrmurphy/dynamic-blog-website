@@ -14,9 +14,9 @@
     <!-- home page will also feature light mode/dark mode toggle-->
 <div id="sideNav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="index.html" id="accents">Home</a>
-  <a href="newpost.html" id="accents" onclick="passUser()">New Post</a>
-  <a href="user.html" id="accents">Post History</a>
+  <a href="index.html" id="accents" onclick="passUserHome()">Home</a>
+  <a href="newpost.html" id="accents" onclick="passUserNew()">New Post</a>
+  <a href="user.html" id="accents" onclick="passUserHistory()">Post History</a>
 </div>
 <input type="hidden" id="logout" value="Log Out" onclick="logout()">
 <br>
@@ -25,12 +25,12 @@
         <input type="checkbox">
         <span class="slider"></span>
     </label>
-     <form action="" method="get" id="login">
+     <form id="login">
         <label for="user">Username:</label><br>
         <input type="text" name="user" id="user" maxlength="20"><br>
         <label for="pass">Password:</label><br>
         <input type="password" name="pass" id="pass" maxlength="20"><br>
-        <input type="submit" id="userLog" value="Log in" onclick="login()"><input type="submit" id="userReg" value="Register" onclick="regUser()">
+        <button  id="userLog" onclick="login()">Log in</button><button id="userReg" onclick="regUser()">Register</button>
      </form>
      <h1 id="welcomeMessage" visibility="hidden"></h1>
      <section name="topPosts">
