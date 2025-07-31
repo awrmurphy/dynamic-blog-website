@@ -227,3 +227,16 @@ input[type=text],input[type=password]{
 
 }
 /*New Post Form ends*/
+
+/*Button Styling*/
+button{
+  background-color: var(--lightModeAccents);
+  color: var(--lightModeColour);
+  border-radius: 8px;
+  border-style: none;
+  &:hover{
+    background-color: var(--darkModeAccents);
+    color: var(--darkModeColour);
+  }
+}
+/*Button Styling ends*/
