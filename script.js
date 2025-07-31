@@ -1,5 +1,7 @@
 //js will handle local storage and dynamic css changes like light mode/dark mode
 //and resizing of new post form on focus/blur
+let postArray = [];
+
 function openNav() {
   document.getElementById("sideNav").style.width = "250px";
 }
@@ -40,7 +42,7 @@ function login(){
     var pass = document.getElementById("pass").value;
     if(loggedInUser == localStorage.getItem(loggedInUser) && pass == localStorage.getItem(loggedInUser+"pass")){
         localStorage.setItem("loggedUser",loggedInUser);
-        
+        location.href ="index.html";
     }
 }
 
@@ -51,8 +53,6 @@ function checkUser(){
         document.getElementById("welcomeMessage").innerHTML= "Welcome "+localStorage.getItem("loggedUser")+"!";
         document.getElementById("logout").outerHTML =' <input type="submit" id="logout" value="Log Out" onclick="logout()"> ';
         loggedInUser=localStorage.getItem("loggedUser");
-        console.log(loggedInUser);
-        
     }
 }
 
@@ -69,32 +69,89 @@ function passUser(){
 function post(){
     event.preventDefault();
     localStorage.setItem("UserPost",loggedInUser);
+    localStorage.setItem("postTitle",document.getElementById("postTitle").value);
     localStorage.setItem("postContent",document.getElementById("postContent").value);
+    if(document.getElementById("postImg").value !=null){
+    const fileInput = document.getElementById('postImg');
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.file;
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            localStorage.setItem('postImg', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    });
+}
     location.href = "user.html";
 }
 
 function loadHistory(){
     loggedInUser=localStorage.getItem("UserPost");
     localStorage.removeItem("UserPost");
+    let postName = localStorage.getItem("postTitle");
+    localStorage.removeItem("postTitle");
     let postContent = localStorage.getItem("postContent");
     localStorage.removeItem("postContent");
-    savePost(postContent);
+    let postImg;
+    console.log(localStorage.getItem("postImg"));
+    
+    if(localStorage.getItem("postImg")!=undefined){
+    postImg = localStorage.getItem("postImg");
+    localStorage.removeItem("postImg");
+    postArray[postArray.length] = {
+        loggedUser : loggedInUser,
+        postN : postName,
+        postC : postContent,
+        postI : postImg
+    };
+    console.log(postArray);
+    
+    }else{
+        postArray[postArray.length] = {
+        loggedUser : loggedInUser,
+        postN : postName,
+        postC : postContent
+        }
+        console.log(postArray);
+        
+    }
+    for(let i =0;i<postArray.length;){
+        buildPost(i);
+        i++;
+    }
+    
 }
 
-function savePost(string){
+function buildPost(i){
+    const post = postArray[i];
+
     const br = document.createElement('br');
     const container = document.createElement('div');
     container.setAttribute('class','oldPost');
     container.setAttribute('background-color', 'var(--lightModeAccents)');
     container.setAttribute('border-radius', '8px');
+    container.setAttribute('width','50%');
     const postHeader = document.createElement('h1');
     postHeader.setAttribute('color','var(--darkModeColour)')
-    postHeader.innerHTML= (document.getElementsByClassName('oldPost').length+1) + ') ' +loggedInUser+' says...';
+    postHeader.innerHTML= (document.getElementsByClassName('oldPost').length+1) + ') ' +post.loggedUser+' says...';
     postHeader.appendChild(br);
+    const postName = document.createElement('h2');
+    postName.setAttribute('color', 'var(--darkModeColour)');
+    postName.innerHTML=post.postN;
+    postName.appendChild(br);
     const postBody = document.createElement('p');
     postBody.setAttribute('color', 'var(--darkModeColour)');
-    postBody.innerHTML= string;
+    postBody.innerHTML= post.postC;
     container.appendChild(postHeader);
+    container.appendChild(postName);
     container.appendChild(postBody);
+    if(post.postI!=undefined){
+        const postImage = document.createElement('img');
+        postImage.setAttribute('src',post.postI);
+        postImage.appendChild(br);
+        container.appendChild(postImage);
+    }
     document.body.appendChild(container);
 }
+
