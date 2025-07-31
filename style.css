@@ -152,7 +152,9 @@ li::scroll-marker {
 li::scroll-marker:target-current {
   background-color: black;
 }
+/*Top Posts Gallery ends*/
 
+/*Login/Reg Form*/
 h1{
     text-align: center;
 }
@@ -170,7 +172,7 @@ input[type=text],input[type=password]{
     background-color: inherit;
     border-radius: 8px;
 }
-/*Top Post Gallery ends*/
+/*Form ends*/
 
 /*Nav Bar*/
 .sidenav {
@@ -212,3 +214,4 @@ input[type=text],input[type=password]{
   .sidenav a {font-size: 18px;}
 }
 /*Nav Bar ends*/
+

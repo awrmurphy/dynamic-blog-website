@@ -8,32 +8,31 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body onload="checkUser()">
     <!-- home page will feature a login form and "top posts" -->
     <!-- A side nav bar will allow for navigation to home page, new post page and user posts page-->
     <!-- home page will also feature light mode/dark mode toggle-->
-    <div id="sideNav" class="sidenav">
+<div id="sideNav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="index.html" id="accents">Home</a>
   <a href="newpost.html" id="accents">New Post</a>
   <a href="user.html" id="accents">Post History</a>
-  
 </div>
-
-
+<input type="hidden" id="logout" value="Log Out" onclick="logout()">
+<br>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span> <br>
     <label class="switch" id="mode">
         <input type="checkbox">
         <span class="slider"></span>
-     </label>
-     <form action="#" id="login">
+    </label>
+     <form action="#" method="post" id="login">
         <label for="user">Username:</label><br>
         <input type="text" name="user" id="user" maxlength="20"><br>
         <label for="pass">Password:</label><br>
         <input type="password" name="pass" id="pass" maxlength="20"><br>
-        <input type="submit" id="userLog" value="Log in"><input type="submit" id="userReg" value="Register">
+        <input type="submit" id="userLog" value="Log in" onclick="login()"><input type="submit" id="userReg" value="Register" onclick="regUser()">
      </form>
-
+     <h1 id="welcomeMessage" visibility="hidden"></h1>
      <section name="topPosts">
         <h1>Top Posts This Week</h1>
         <ul>

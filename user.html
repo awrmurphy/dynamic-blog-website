@@ -7,9 +7,22 @@
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="checkUser()">
     <!--This page will contain the users post history which will be contained in local storage-->
     <!-- User must be logged in to view content on this page-->
     <!-- User will be able to edit or delete and post from this page-->
+<div id="sideNav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="index.html" id="accents">Home</a>
+  <a href="newpost.html" id="accents">New Post</a>
+  <a href="user.html" id="accents">Post History</a>
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span> <br>
+<label class="switch" id="mode">
+        <input type="checkbox">
+        <span class="slider"></span>
+</label>
 </body>
 </html>
