@@ -7,7 +7,7 @@
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="checkUser()" onload="newPost()">
+<body onload="newPost()">
     <!--This page will contain a dynamic form for creating a new post-->
     <!--User must be logged in to create a new post-->
 <div id="sideNav" class="sidenav">
@@ -23,5 +23,12 @@
         <input type="checkbox">
         <span class="slider"></span>
     </label>
+    <h1 id="welcomeMessage" visibility="hidden"></h1>
+    <h1 id="loginMessage">You must be logged in to make a new post!</h1>
+    <form action="#" method="post" id="newUserPost">
+        <label id="newPoster"></label>
+        <input type="textarea" minlength="1" maxlength="200" width="25" height="4" required><br>
+        <input type="submit" value="Post" onclick="post()">
+    </form>
 </body>
 </html>

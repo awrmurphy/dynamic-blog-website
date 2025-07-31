@@ -215,3 +215,8 @@ input[type=text],input[type=password]{
 }
 /*Nav Bar ends*/
 
+/*New Post Form*/
+#newUserPost{
+  visibility: hidden;
+}
+/*New Post Form ends*/

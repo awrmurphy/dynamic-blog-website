@@ -7,10 +7,18 @@ function openNav() {
 function closeNav() {
   document.getElementById("sideNav").style.width = "0";
 }
-var loggedInUser;
+let loggedInUser =undefined;
 
 function newPost() {
-    
+   
+    loggedInUser=localStorage.getItem("UserPost");
+    localStorage.removeItem("UserPost");
+    if(loggedInUser != undefined){
+        document.getElementById("welcomeMessage").style.visibility = "visible";
+        document.getElementById("welcomeMessage").innerHTML= "Welcome "+loggedInUser+"!";
+        document.getElementById("loginMessage").style.visibility = "hidden";
+        document.getElementById("newUserPost").style.visibility = "visible";
+    }
 }
 
 function regUser(){
@@ -41,10 +49,18 @@ function checkUser(){
         document.getElementById("welcomeMessage").style.visibility = "visible";
         document.getElementById("welcomeMessage").innerHTML= "Welcome "+localStorage.getItem("loggedUser")+"!";
         document.getElementById("logout").outerHTML =' <input type="submit" id="logout" value="Log Out" onclick="logout()"> ';
+        loggedInUser=localStorage.getItem("loggedUser");
+        console.log(loggedInUser);
+        
     }
 }
 
 function logout(){
     localStorage.removeItem("loggedUser");
     location.reload();
+}
+
+function passUser(){
+    localStorage.setItem("UserPost", loggedInUser);
+    location.href = "newpost.html";
 }
