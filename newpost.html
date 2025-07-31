@@ -26,8 +26,8 @@
     <h1 id="welcomeMessage" visibility="hidden"></h1>
     <h1 id="loginMessage">You must be logged in to make a new post!</h1>
     <form action="#" method="post" id="newUserPost">
-        <label id="newPoster"></label>
-        <input type="textarea" minlength="1" maxlength="200" width="25" height="4" required><br>
+        <label id="newPoster"></label><br>
+        <textarea id="postContent" minlength="1" maxlength="200" cols="25" rows="4" required></textarea><br>
         <input type="submit" value="Post" onclick="post()">
     </form>
 </body>

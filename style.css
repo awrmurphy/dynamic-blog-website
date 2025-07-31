@@ -217,6 +217,13 @@ input[type=text],input[type=password]{
 
 /*New Post Form*/
 #newUserPost{
+  position: relative;
+  left: 45%;
   visibility: hidden;
+  [type="submit"]{
+    width: 10.8%;
+    
+  }
+
 }
 /*New Post Form ends*/
