@@ -66,22 +66,27 @@ function passUser(){
     location.href = "newpost.html";
 }
 
+function read(input){
+    if(input.files && input.files[0]){
+        var reader = new FileReader();
+
+        reader.onload = (e) => {
+            localStorage.setItem('postImg', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    
+    };
+}
+
+
 function post(){
     event.preventDefault();
     localStorage.setItem("UserPost",loggedInUser);
     localStorage.setItem("postTitle",document.getElementById("postTitle").value);
     localStorage.setItem("postContent",document.getElementById("postContent").value);
     if(document.getElementById("postImg").value !=null){
-    const fileInput = document.getElementById('postImg');
-    fileInput.addEventListener('change', (event) => {
-        const file = event.target.file;
-        const reader = new FileReader();
 
-        reader.onload = (e) => {
-            localStorage.setItem('postImg', e.target.result);
-        };
-        reader.readAsDataURL(file);
-    });
 }
     location.href = "user.html";
 }
@@ -94,8 +99,7 @@ function loadHistory(){
     let postContent = localStorage.getItem("postContent");
     localStorage.removeItem("postContent");
     let postImg;
-    console.log(localStorage.getItem("postImg"));
-    
+        
     if(localStorage.getItem("postImg")!=undefined){
     postImg = localStorage.getItem("postImg");
     localStorage.removeItem("postImg");

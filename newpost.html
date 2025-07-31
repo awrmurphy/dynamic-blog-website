@@ -29,7 +29,7 @@
         <label id="newPoster"></label><br>
         <input type="text" placeholder="Post Title" id="postTitle" minlength="1" maxlength="50" required><br>
         <textarea id="postContent" minlength="1" maxlength="200" cols="25" rows="4" required></textarea><br>
-        <input type="file" id="postImg" name="filename" accept="image/*"><br>
+        <input type="file" id="postImg" name="filename" accept="image/*" onchange="read(this)"><br>
         <input type="submit" value="Post" onclick="post()">
     </form>
 </body>
