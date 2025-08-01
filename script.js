@@ -179,7 +179,12 @@ function buildPost(i){
         
     }
     const edit = document.createElement('button');
+    if(postArray.length==1){
+        edit.setAttribute('onclick','edit(0)');
+    }
+    else{
     edit.setAttribute('onclick','edit(this.id)');
+    }
     edit.setAttribute('id',postArray.length-i);
     edit.innerHTML='Edit Post';
     container.appendChild(edit);
@@ -192,6 +197,7 @@ function buildPost(i){
 }
 
 function edit(i){
+
     document.getElementById(`postName: ${i}`).outerHTML=`<input type="text" placeholder="Post Title" id="postName: ${i}" minlength="1" maxlength="50" required>`;
     document.getElementById(`postBody: ${i}`).outerHTML=`<textarea id="postBody: ${i}" minlength="1" maxlength="200" cols="25" rows="4" required></textarea>`;
     if(document.getElementById(`postImage: ${i}`)){
