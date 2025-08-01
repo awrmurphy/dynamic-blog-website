@@ -180,7 +180,7 @@ function buildPost(i){
     }
     const edit = document.createElement('button');
     if(postArray.length==1){
-        edit.setAttribute('onclick','edit(0)');
+        edit.setAttribute('onclick','edit(1)');
     }
     else{
     edit.setAttribute('onclick','edit(this.id)');
