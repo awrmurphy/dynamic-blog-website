@@ -29,16 +29,17 @@ function newPost() {
 function regUser(){
     var user = document.getElementById("user").value;
     var pass = document.getElementById("pass").value;
-    if (user == null || pass == null) {
+    if (user == "" || pass == ""||user==null||user==undefined||pass==null||pass==undefined) {
         alert("You must enter a Username AND Password to register.");
-    }
-    if(!localStorage.getItem(user)){
+    }else if(!localStorage.getItem(user))
+        {
         localStorage.setItem(user,user);
         localStorage.setItem(userReg,(localStorage.getItem(userReg+1)));
         localStorage.setItem(user+"pass",pass)
-    }else{
-        alert("This username is in use!");
-    }
+        }else
+            {
+                alert("This username is in use!");
+            }
 }
 
 function login(){
