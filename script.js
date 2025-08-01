@@ -207,8 +207,12 @@ function edit(i){
 }
 
 function editPost(i){
+    if(postArray.length==1){
+        var thisPost = postArray[0];
+    }else{
     var thisPost = postArray[i];
-    
+    }
+
     thisPost.postN = document.getElementById(`postName: ${i}`).value;
     thisPost.postC = document.getElementById(`postBody: ${i}`).value;
     if(document.getElementById(`postImage: ${i}`)){
