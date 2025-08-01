@@ -100,6 +100,9 @@ function post(){
     event.preventDefault();
     
     postArray=JSON.parse(localStorage.getItem("posts"));
+    if(postArray==null||postArray==undefined){
+        postArray=[];
+    }
     if(localStorage.getItem('postImg')){
     postArray.push({
     loggedUser : loggedInUser,
@@ -221,8 +224,11 @@ function editPost(i){
 
 function del(i){
     console.log(i);
-    
-postArray.splice(i,1);
+    if(postArray.length==1){
+        postArray.splice(0,1);
+    }else{
+        postArray.splice(i,1);
+    }
 postHistory = JSON.stringify(postArray);
 localStorage.setItem('posts', postHistory);
 document.querySelectorAll(".oldPost").forEach(el => el.remove());
