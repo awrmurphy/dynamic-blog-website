@@ -233,7 +233,7 @@ button{
   background-color: var(--lightModeAccents);
   color: var(--darkModeColour);
   border-radius: 8px;
-  border-style: none;
+  border-style: solid 1px black;
   &:hover{
     background-color: var(--darkModeAccents);
     color: var(--lightModeColour);

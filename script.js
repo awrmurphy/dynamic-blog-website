@@ -16,6 +16,7 @@ function newPost() {
    
     loggedInUser=localStorage.getItem("UserPost");
     localStorage.removeItem("UserPost");
+    localStorage.removeItem("postImg");
     if(loggedInUser != undefined){
         document.getElementById("newPoster").innerHTML=loggedInUser+" says...";
         document.getElementById("welcomeMessage").style.visibility = "visible";
@@ -28,6 +29,9 @@ function newPost() {
 function regUser(){
     var user = document.getElementById("user").value;
     var pass = document.getElementById("pass").value;
+    if (user == null || pass == null) {
+        alert("You must enter a Username AND Password to register.");
+    }
     if(!localStorage.getItem(user)){
         localStorage.setItem(user,user);
         localStorage.setItem(userReg,(localStorage.getItem(userReg+1)));
@@ -44,6 +48,8 @@ function login(){
     if(loggedInUser == localStorage.getItem(loggedInUser) && pass == localStorage.getItem(loggedInUser+"pass")){
         localStorage.setItem("loggedUser",loggedInUser);
         location.href ="index.html";
+    }else{
+        alert("Invalid Username or Password. Try Again.");
     }
 }
 
@@ -246,4 +252,3 @@ loadHistory();
 
 
 }
-
