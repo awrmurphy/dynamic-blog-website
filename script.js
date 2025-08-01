@@ -101,20 +101,20 @@ function post(){
     
     postArray=JSON.parse(localStorage.getItem("posts"));
     if(localStorage.getItem('postImg')){
-    postArray[postArray.length]={
+    postArray.push({
     loggedUser : loggedInUser,
     postN : document.getElementById("postTitle").value,
     postC : document.getElementById("postContent").value,
     postI : localStorage.getItem('postImg')
-    };
+    });
     localStorage.removeItem('postImg');
    }else{
-    postArray[postArray.length]={
+    postArray.push({
     loggedUser : loggedInUser,
     postN : document.getElementById("postTitle").value,
     postC : document.getElementById("postContent").value,
     postI : undefined
-        }
+        });
     }
     postHistory = JSON.stringify(postArray);
     localStorage.setItem("posts",postHistory);
