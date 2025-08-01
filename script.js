@@ -48,7 +48,7 @@ function login(){
     var pass = document.getElementById("pass").value;
     if(loggedInUser == localStorage.getItem(loggedInUser) && pass == localStorage.getItem(loggedInUser+"pass")){
         localStorage.setItem("loggedUser",loggedInUser);
-        location.href ="index.html";
+        location.reload();
     }else{
         alert("Invalid Username or Password. Try Again.");
     }
